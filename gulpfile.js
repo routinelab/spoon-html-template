@@ -4,6 +4,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     stylus = require('gulp-stylus'),
+    prefix = require('gulp-autoprefixer'),
     nodemon = require('gulp-nodemon');
 
 // javascript
@@ -18,11 +19,14 @@ gulp.task('js', function() {
 // css
 gulp.task('css', function() {
     gulp.watch('css/**/*.styl', function() {
-        gulp.src('css/**/*.styl')
-            .pipe(stylus())
+        gulp.src('css/style.styl')
+            .pipe(stylus({
+                'include css': true
+            }))
             .pipe(gulp.dest('app/css'));
     });
 });
+
 
 // server
 gulp.task('server', function() {
